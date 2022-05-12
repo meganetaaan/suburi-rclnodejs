@@ -3,9 +3,9 @@ import * as rclnodejs from 'rclnodejs'
 function publishMessage(publisher: rclnodejs.Publisher<"std_msgs/msg/String">, count: number) {
   const msg = rclnodejs.createMessageObject('std_msgs/msg/String')
   const data = `Hello from ROS2 with rclnodejs for ${count} times!`
-  console.log(data)
   msg.data = data
   publisher.publish(msg)
+  console.log(`sent message: ${data}`)
 }
 
 (async () => {
