@@ -7,8 +7,9 @@ import * as rclnodejs from 'rclnodejs'
   node.createSubscription('std_msgs/msg/String', 'hello', {
     qos: ""
   }, (message) => {
-    message = message as rclnodejs.std_msgs.msg.String
-    console.log(`received message: ${message.data}`)
+    if ('data' in message) {
+      console.log(`received message: ${message.data}`)
+    }
   })
   node.spin()
 })()
