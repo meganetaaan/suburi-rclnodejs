@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/meganetaaan/suburi-rclnodejs#readme",
   "dependencies": {
+    "opencv-build": "^0.1.9",
+    "opencv4nodejs": "^5.6.0",
     "rclnodejs": "^0.21.1"
   },
   "devDependencies": {
