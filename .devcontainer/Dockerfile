@@ -2,6 +2,8 @@ FROM ros:foxy-ros-base
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     curl \
+    alsa-utils \
+    openssh-server \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN curl -SL https://deb.nodesource.com/setup_16.x | bash \
@@ -21,6 +23,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 USER $USERNAME
+
+# Set ssh pass
+ARG SSH_PASSWD="suburi"
+RUN echo ${USERNAME}:${SSH_PASSWD} | sudo chpasswd
+
+WORKDIR /home/${USERNAME}/workspace
+RUN sudo chown -R ${USERNAME} /home/${USERNAME}
 
 RUN echo "\n\
 echo 'Sourcing ROS2 packages...'\n\

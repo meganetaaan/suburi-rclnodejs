@@ -20,6 +20,8 @@
 	"containerEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}"
 	},
+	"workspaceMount": "type=bind,source=${localWorkspaceFolder}/,target=/home/appuser/workspace/src/suburi-rclnodejs",
+	"workspaceFolder": "/home/appuser/workspace",
 	"mounts": [
 		"source=/dev,target=/dev,type=bind"
 	],
